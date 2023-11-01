@@ -474,12 +474,11 @@ class ScriptRunner:
 
     def create_script_ui(self, script):
         import modules.api.models as api_models
-
+        
         script.args_from = len(self.inputs)
         script.args_to = len(self.inputs)
 
         controls = wrap_call(script.ui, script.filename, "ui", script.is_img2img)
-
         if controls is None:
             return
 
@@ -540,7 +539,7 @@ class ScriptRunner:
 
         self.setup_ui_for_section(None)
 
-        dropdown = gr.Dropdown(label="Script", elem_id="script_list", choices=["None"] + self.titles, value="None", type="index")
+        dropdown = gr.Dropdown(visible=False, label="Script", elem_id="script_list", choices=["None"] + self.titles, value="None", type="index")
         self.inputs[0] = dropdown
 
         self.setup_ui_for_section(None, self.selectable_scripts)
